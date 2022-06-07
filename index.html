@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset = "utf-8">
+	<meta name = "viewport" content = "width=device-width, initial-scale=1">
+	<link rel = "stylesheet" type = "text/css" href = "css/style.css">
+	<script src = "https://kit.fontawesome.com/eeccba83db.js" crossorigin = "anonymous"></script>
+	<title>Tic Tac Toe</title>
+</head>
+
+<body>
+	<div class = "align_center">
+		<h1> Tic Tac Toe Game </h1><br><br>
+		<h2><div id = "showGameStatus"></div></h2>
+		<h4><div id = "showPlayerMove"><p style = 'color: blue;'>Player 1 to move... X</p></div></h4>
+		<button id = "reload" class = "glow_btn" style = "visibility: hidden; margin-bottom: 10px;" onClick = "location.reload();">Play again!</button>
+		<br>
+	</div>
+	<!-- ============ Grid container ============ -->
+	<div id ="container">
+		<h1><table id = "gameTable" class = "align_center" border = "3">
+		</table></h1>
+	</div>
+
+	<script type = "text/javascript" src = "JS/script.js"></script>
+</body>
+</html>
