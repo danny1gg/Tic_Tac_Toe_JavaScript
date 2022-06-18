@@ -28,7 +28,7 @@ function selectCell() {
 		switchPlayersMove(selectedCell); 
 		selectedCell.innerHTML = player;
 		gridMap[id] = player;
-		checkForWinner();	
+		checkForWinner(player);	
 	}	
 }
 
@@ -47,18 +47,17 @@ function switchPlayersMove(cell) {
 	++nrMove;
 }
 
-function checkForWinner() {
+function checkForWinner(player) {
 	for (let i = 1; i <= 3; ++i) {
-		if (gridMap[i] == "X" && gridMap[i + 3] == "X" && gridMap[i + 6] == "X" ||
-			gridMap[(i * 3) - 2] == "X" && gridMap[(i * 3) - 1] == "X" && gridMap[i * 3] == "X" ||
-			i == 1 && gridMap[1] == "X" && gridMap[5] == "X" && gridMap[9] == "X"||
-			i == 1 && gridMap[3] == "X" && gridMap[5] == "X" && gridMap[7] == "X") {
-			++countOnRowX;
-		} else if (gridMap[i] == "0" && gridMap[i + 3] == "0" && gridMap[i + 6] == "0" ||
-			gridMap[(i * 3) - 2] == "0" && gridMap[(i * 3) - 1] == "0" && gridMap[i * 3] == "0" ||
-			i == 1 &&gridMap[1] == "0" && gridMap[5] == "0" && gridMap[9] == "0" ||
-			i == 1 &&gridMap[3] == "0" && gridMap[5] == "0" && gridMap[7] == "0") {
-			++countOnRow0;
+		if (gridMap[i] == player && gridMap[i + 3] == player && gridMap[i + 6] == player ||
+			gridMap[(i * 3) - 2] == player && gridMap[(i * 3) - 1] == player && gridMap[i * 3] == player ||
+			i == 1 && gridMap[1] == player && gridMap[5] == player && gridMap[9] == player||
+			i == 1 && gridMap[3] == player && gridMap[5] == player && gridMap[7] == player) {
+			if (player == "X") {
+				++countOnRowX;
+			} else {
+				++countOnRow0;
+			}
 		}
 		showWinner();
 	}
