@@ -1,7 +1,7 @@
 var table = document.getElementById("gameTable");
 var gameStatus = document.getElementById("showGameStatus");
 var playerMove = document.getElementById("showPlayerMove");
-var nrMove = 0, countOnRowX = 0, countOnRow0 = 0;
+var nrMove = 0, haveThreeMatchingCells = 0;
 var gameFinished = false;
 var gridMap = [];
 var player = "X";
@@ -49,25 +49,20 @@ function switchPlayersMove(cell) {
 
 function checkForWinner(player) {
 	for (let i = 1; i <= 3; ++i) {
-		if (gridMap[i] == player && gridMap[i + 3] == player && gridMap[i + 6] == player ||
-			gridMap[(i * 3) - 2] == player && gridMap[(i * 3) - 1] == player && gridMap[i * 3] == player ||
-			i == 1 && gridMap[1] == player && gridMap[5] == player && gridMap[9] == player||
-			i == 1 && gridMap[3] == player && gridMap[5] == player && gridMap[7] == player) {
-			if (player == "X") {
-				++countOnRowX;
-			} else {
-				++countOnRow0;
-			}
+		if (gridMap[i] == player && gridMap[i + 3] == player && gridMap[i + 6] == player 
+			|| gridMap[(i * 3) - 2] == player && gridMap[(i * 3) - 1] == player && gridMap[i * 3] == player 
+			|| gridMap[5 - (i + i)] == player && gridMap[5] == player && gridMap[5 + (i + i)] == player && i <= 2) {
+			(player == "X") ? ++haveThreeMatchingCells : --haveThreeMatchingCells;
 		}
 		showWinner();
 	}
 }
 
 function showWinner() {
-	if (countOnRowX == 1) {
+	if (haveThreeMatchingCells == 1) {
 		gameStatus.innerHTML = "Player 1 won!";
 		displayEndGameElements();
-	} else if (countOnRow0 == 1) {
+	} else if (haveThreeMatchingCells == -1) {
 		gameStatus.innerHTML = "Player 2 won!";
 		displayEndGameElements();
 	} else if (nrMove == 9) {
